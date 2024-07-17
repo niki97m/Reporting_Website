@@ -91,5 +91,5 @@ else:
             if email:
                 submitted_data['Email'] = email
 
-            st.write(submitted_data)
+            #st.write(submitted_data)
             send_formspree(submitted_data)
