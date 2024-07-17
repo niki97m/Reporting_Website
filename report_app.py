@@ -19,10 +19,10 @@ def send_formspree(submitted_data):
     formspree_url = "https://formspree.io/f/myzgzljj"  # Replace with Formspree endpoint URL
     response = requests.post(formspree_url, data=submitted_data)
     
-    if response.status_code == 200:
-        st.success("Report submitted successfully and email sent.")
-    else:
-        st.error(f"Failed to send email: {response.status_code} - {response.text}")
+    # if response.status_code == 200:
+    #     st.success("Report submitted successfully and email sent.")
+    # else:
+    #     st.error(f"Failed to send email: {response.status_code} - {response.text}")
 
 # Path to CSV file in the repository
 csv_path = 'Drug_list.csv'
