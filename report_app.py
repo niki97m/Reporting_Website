@@ -27,9 +27,6 @@ def send_formspree(submitted_data):
 # Path to CSV file in the repository
 csv_path = 'Drug_list.csv'
 
-# Print current working directory for debugging
-#st.write(f"Current working directory: {os.getcwd()}")
-
 # Get the list of drugs
 drug_list = get_drug_list(csv_path)
 
@@ -75,21 +72,24 @@ else:
         if not experience or not drug_taken or batch_tested not in ['Yes', 'No']:
             st.error('Please fill in all required fields before submitting the form.')
         else:
-            st.success('Thank you for your report. We will review the information provided.')
+            # Validate the email field
+            if email and '@' not in email:
+                st.error('Please enter a valid email address.')
+            else:
+                st.success('Thank you for your report. We will review the information provided.')
 
-            # Process the form data as needed
-            submitted_data = {
-                'When': str(when_happened) if when_happened != date.today() else "Not specified",
-                'Location': location if location != 'Please specify' else "Not specified",
-                'In BC': in_bc,
-                'Experience': experience,
-                'Batch Tested': batch_tested,
-                'Drug Taken': ", ".join(drug_taken) if drug_taken else "Not specified",
-                'Where Got': where_got if where_got != 'Please specify' else "Not specified"
-            }
+                # Process the form data as needed
+                submitted_data = {
+                    'When': str(when_happened) if when_happened != date.today() else "Not specified",
+                    'Location': location if location != 'Please specify' else "Not specified",
+                    'In BC': in_bc,
+                    'Experience': experience,
+                    'Batch Tested': batch_tested,
+                    'Drug Taken': ", ".join(drug_taken) if drug_taken else "Not specified",
+                    'Where Got': where_got if where_got != 'Please specify' else "Not specified"
+                }
 
-            if email:
-                submitted_data['Email'] = email
+                if email:
+                    submitted_data['Email'] = email
 
-            #st.write(submitted_data)
-            send_formspree(submitted_data)
+                send_formspree(submitted_data)
