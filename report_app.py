@@ -28,7 +28,7 @@ def send_formspree(submitted_data):
 csv_path = 'Drug_list.csv'
 
 # Print current working directory for debugging
-st.write(f"Current working directory: {os.getcwd()}")
+#st.write(f"Current working directory: {os.getcwd()}")
 
 # Get the list of drugs
 drug_list = get_drug_list(csv_path)
